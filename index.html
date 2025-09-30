@@ -333,43 +333,6 @@
                 display: flex;
             }
         }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 224, 255, 0.2);
-            border: none;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 50%;
-            transition: background .3s;
-            z-index: 10;
-        }
-
-        .arrow:hover {
-            background: rgba(0, 224, 255, 0.4);
-        }
-
-        .arrow.left {
-            left: -50px;
-        }
-
-        .arrow.right {
-            right: -50px;
-        }
-
-        @media (max-width: 768px) {
-            .arrow.left {
-                left: 5px;
-            }
-
-            .arrow.right {
-                right: 5px;
-            }
-        }
     </style>
 </head>
 
@@ -487,8 +450,6 @@
     <!-- Portfolio -->
     <section id="portfolio">
         <h2 class="section-title">Portfolio</h2>
-        <div class="portfolio-wrapper">
-            <button class="arrow left">&#10094;</button>
             <div class="portfolio">
                 <!-- Web3 card with inline SVG vector -->
                 <div class="portfolio-card">
@@ -594,9 +555,6 @@
                     </p>
                     <a href="https://my-financetracker.netlify.app/" target="_blank" class="demo-btn">View Demo</a>
                 </div>
-            </div>
-            <button class="arrow right">&#10095;</button>
-        </div>
         </div>
     </section>
 
@@ -636,23 +594,6 @@
         });
         sections.forEach(sec => observer.observe(sec));
 
-        // Portfolio slider
-        const portfolio = document.querySelector('.portfolio');
-        const leftBtn = document.querySelector('.arrow.left');
-        const rightBtn = document.querySelector('.arrow.right');
-
-        rightBtn.addEventListener('click', () => {
-            portfolio.scrollBy({
-                left: 300,
-                behavior: 'smooth'
-            });
-        });
-        leftBtn.addEventListener('click', () => {
-            portfolio.scrollBy({
-                left: -300,
-                behavior: 'smooth'
-            });
-        });
     </script>
 </body>
 
