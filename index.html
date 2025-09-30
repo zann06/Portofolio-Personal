@@ -310,7 +310,7 @@
             color: #fff;
         }
 
-        /* Mobile */
+        /* Mobile adjustments */
         @media (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -342,7 +342,19 @@
             }
 
             .skills {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .skill-card img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .skill-card p {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -461,11 +473,9 @@
     <section id="portfolio">
         <h2 class="section-title">Portfolio</h2>
         <div class="portfolio">
-            <!-- Web3 Explorer Card -->
             <div class="portfolio-card">
                 <div class="media" aria-hidden="false">
                     <svg viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <!-- SVG content (nodes + blockchain) -->
                         <rect width="1200" height="360" fill="rgba(2,6,23,0.45)"></rect>
                         <g stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round">
                             <line x1="120" y1="80" x2="300" y2="140" />
@@ -476,10 +486,6 @@
                             <line x1="420" y1="170" x2="600" y2="240" />
                             <line x1="600" y1="240" x2="860" y2="200" />
                         </g>
-                        <g filter="url(#soft)">
-                            <circle cx="120" cy="80" r="28" fill="url(#g1)"></circle>
-                            <circle cx="300" cy="140" r="34" fill="url(#g2)"></circle>
-                        </g>
                     </svg>
                 </div>
                 <h3>Web3 Explorer</h3>
@@ -488,8 +494,6 @@
                     Reading on-chain data, learning dApps, and thinking about Web3 security implications.
                 </p>
             </div>
-
-            <!-- TryHackMe Card -->
             <div class="portfolio-card">
                 <div class="media">
                     <img src="LabTryHack.jpeg" alt="Cybersecurity Lab - TryHackMe">
@@ -500,8 +504,6 @@
                     Used tools like <strong>Gobuster</strong> and <strong>BurpSuite</strong>.
                 </p>
             </div>
-
-            <!-- Financial Tracker -->
             <div class="portfolio-card">
                 <div class="media">
                     <img src="finance.jpeg" alt="Financial Tracker Project">
@@ -552,4 +554,3 @@
 </body>
 
 </html>
-
