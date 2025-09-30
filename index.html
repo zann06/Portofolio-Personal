@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farid Rizky Fauzan - Portfolio</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 32, 39, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav h1 span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: #bbb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Hero */
+        #hero {
+            background: url('hero-bg.jpg') center/cover no-repeat;
+            color: white;
+        }
+
+        #hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+        }
+
+        /* About */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .about-photo {
+            position: relative;
+            flex: 1 1 280px;
+            max-width: 350px;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-photo::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('profile-about.jpg') center/cover no-repeat;
+            filter: blur(12px);
+            transform: scale(1.1);
+            z-index: 0;
+        }
+
+        .about-photo img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            /* fokus bagian atas (setengah badan) */
+            border-radius: 15px;
+        }
+
+        .about-text {
+            flex: 1 1 400px;
+            text-align: left;
+        }
+
+        /* Experience */
+        .experience {
+            display: grid;
+            gap: 20px;
+            max-width: 800px;
+        }
+
+        .exp-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .exp-card h3 {
+            margin-bottom: 10px;
+            color: #00e0ff;
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #00e0ff;
+        }
+
+        .skill-card .level {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #bbb;
+        }
+
+        /* Portfolio */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* keep svg/cards same height as previous images */
+        .portfolio-card .media {
+            width: 100%;
+            height: 180px;
+            display: block;
+            overflow: hidden;
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.4), rgba(3, 37, 65, 0.35));
+        }
+
+        .portfolio-card img,
+        .portfolio-card svg {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-card h3 {
+            padding: 15px;
+            color: #00e0ff;
+        }
+
+        .portfolio-card p {
+            padding: 0 15px 15px;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        /* Contact */
+        .contact a {
+            color: #00e0ff;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: #fff;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            margin: 10px 0 20px;
+            padding: 8px 18px;
+            background: #00e0ff;
+            color: #000;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .demo-btn:hover {
+            background: #4facfe;
+            color: #fff;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                flex-direction: column;
+                background: rgba(15, 32, 39, 0.95);
+                width: 200px;
+                padding: 20px;
+                transform: translateX(100%);
+                transition: transform 0.3s;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 224, 255, 0.2);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background .3s;
+            z-index: 10;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 224, 255, 0.4);
+        }
+
+        .arrow.left {
+            left: -50px;
+        }
+
+        .arrow.right {
+            right: -50px;
+        }
+
+        @media (max-width: 768px) {
+            .arrow.left {
+                left: 5px;
+            }
+
+            .arrow.right {
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1>Farid <span>Cybersecurity Enthusiast | Web3 Explorer | Frontend (Basic)</span></h1>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero">
+        <h2>Hi, I'm Farid Rizky Fauzan</h2>
+        <p>Exploring Web3 and Cybersecurity Journey</p>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about">
+            <div class="about-photo">
+                <img src="zoe2blur.png" alt="Farid About">
+            </div>
+            <div class="about-text">
+                <p>
+                    Hello, I'm <strong>Farid Rizky Fauzan</strong>, an Informatics student passionate about
+                    exploring the intersection of <strong>Web3</strong> and <strong>Cybersecurity</strong>.
+                    My journey is driven by curiosity to understand how decentralized technologies
+                    are shaping the digital world and how we can protect it from emerging threats.
+                </p>
+                <p>
+                    I enjoy experimenting, building, and learning through hands-on experience.
+                    Every step I take in technology is a step toward creating a safer, smarter,
+                    and more innovative digital future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience">
+            <div class="exp-card">
+                <h3>Workshop - Ethereal Learn X HackPoint</h3>
+                <p>
+                    I joined a technical workshop where I gained real exposure to <strong>networking</strong>
+                    and <strong>cybersecurity</strong>. It gave me valuable insights into how systems
+                    are connected and secured, and helped me strengthen my foundation for
+                    deeper exploration into Web3 security.
+                </p>
+            </div>
+            <div class="exp-card">
+                <h3>Seminar 2024 - Software Tester by Growia</h3>
+                <p>
+                    This seminar introduced me to the world of <strong>software testing</strong>.
+                    I learned about quality assurance, how to use testing tools, and the importance
+                    of maintaining reliability in software products—knowledge that complements my
+                    cybersecurity journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills">
+            <!-- Programming Basics -->
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                <p>HTML <span class="level">(Basic)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                <p>CSS <span class="level">(Basic)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript">
+                <p>JavaScript <span class="level">(Basic)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                    alt="C++">
+                <p>C++ <span class="level">(Learning)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <p>Python <span class="level">(Learning)</span></p>
+            </div>
+            <!-- Cybersecurity -->
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                <p>Linux <span class="level">(Learning)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png" alt="Burp Suite">
+                <p>Burp Suite <span class="level">(Learning)</span></p>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3067/3067359.png" alt="Wireshark">
+                <p>Wireshark <span class="level">(Learning)</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="portfolio-wrapper">
+            <button class="arrow left">&#10094;</button>
+            <div class="portfolio">
+                <!-- Web3 card with inline SVG vector -->
+                <div class="portfolio-card">
+                    <div class="media" aria-hidden="false" role="img"
+                        aria-label="Vector illustration of blockchain nodes">
+                        <!-- Inline SVG illustrating a stylized blockchain / network -->
+                        <svg viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid slice" role="img">
+                            <defs>
+                                <linearGradient id="g1" x1="0" x2="1">
+                                    <stop offset="0" stop-color="#00e0ff" />
+                                    <stop offset="1" stop-color="#4facfe" />
+                                </linearGradient>
+                                <linearGradient id="g2" x1="0" x2="1">
+                                    <stop offset="0" stop-color="#0ea5e9" />
+                                    <stop offset="1" stop-color="#3b82f6" />
+                                </linearGradient>
+                                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="6" result="b" />
+                                    <feBlend in="SourceGraphic" in2="b" mode="overlay" />
+                                </filter>
+                            </defs>
+
+                            <!-- background subtle grid -->
+                            <rect width="1200" height="360" fill="rgba(2,6,23,0.45)"></rect>
+
+                            <!-- connecting lines -->
+                            <g stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-linecap="round">
+                                <line x1="120" y1="80" x2="300" y2="140" />
+                                <line x1="300" y1="140" x2="520" y2="60" />
+                                <line x1="520" y1="60" x2="780" y2="110" />
+                                <line x1="780" y1="110" x2="1000" y2="60" />
+                                <line x1="220" y1="220" x2="420" y2="170" />
+                                <line x1="420" y1="170" x2="600" y2="240" />
+                                <line x1="600" y1="240" x2="860" y2="200" />
+                            </g>
+
+                            <!-- nodes (large) -->
+                            <g filter="url(#soft)">
+                                <circle cx="120" cy="80" r="28" fill="url(#g1)"></circle>
+                                <circle cx="300" cy="140" r="34" fill="url(#g2)"></circle>
+                                <circle cx="520" cy="60" r="24" fill="#60a5fa"></circle>
+                                <circle cx="780" cy="110" r="30" fill="url(#g1)"></circle>
+                                <circle cx="1000" cy="60" r="20" fill="#3b82f6"></circle>
+
+                                <circle cx="220" cy="220" r="26" fill="url(#g2)"></circle>
+                                <circle cx="420" cy="170" r="22" fill="#7dd3fc"></circle>
+                                <circle cx="600" cy="240" r="36" fill="url(#g1)"></circle>
+                                <circle cx="860" cy="200" r="28" fill="#38bdf8"></circle>
+                            </g>
+
+                            <!-- small nodes -->
+                            <g fill="#9be7ff" opacity="0.9">
+                                <circle cx="200" cy="120" r="6"></circle>
+                                <circle cx="450" cy="90" r="5"></circle>
+                                <circle cx="700" cy="150" r="5"></circle>
+                                <circle cx="950" cy="130" r="6"></circle>
+                                <circle cx="320" cy="210" r="5"></circle>
+                            </g>
+
+                            <!-- central hex (representing a block / contract) -->
+                            <g transform="translate(520,160)">
+                                <polygon points="-60,-40 60,-40 120,0 60,40 -60,40 -120,0" fill="#07142b"
+                                    stroke="url(#g1)" stroke-width="6" />
+                                <text x="0" y="6" text-anchor="middle" font-size="22" fill="#a5f3fc"
+                                    font-family="Segoe UI, Arial">Web3</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <h3>Web3 Explorer</h3>
+                    <p>
+                        Exploring Ethereum blockchain and experimenting with <strong>smart contracts</strong>.
+                        This card shows experiments reading on-chain data, learning how dApps interact with the chain,
+                        and thinking about Web3 security implications.
+                    </p>
+                </div>
+
+                <!-- TryHackMe / Cybersecurity card -->
+                <div class="portfolio-card">
+                    <div class="media">
+                        <img src="LabTryHack.jpeg" alt="Cybersecurity Lab - TryHackMe">
+                    </div>
+                    <h3>Cybersecurity Lab (TryHackMe)</h3>
+                    <p>
+                        Hands-on practice on <strong>TryHackMe</strong> to simulate penetration testing.
+                        Learned about vulnerabilities and exploits, and used tools like <strong>Gobuster</strong> and
+                        <strong>BurpSuite</strong>.
+                        Screenshot sanitized for privacy.
+                    </p>
+                </div>
+                <div class="portfolio-card">
+                    <div class="media">
+                        <img src="finance.jpeg" alt="project mini">
+                    </div>
+                    <h3>Financial Tracker (Mini Project)</h3>
+                    <p>
+                        A simple web app to record daily income and expenses.
+                        Built using <strong>HTML, CSS, and JavaScript</strong>.
+                        Through this project, I learned about creating interactive forms,
+                        handling user input, and dynamically displaying data.
+                        It also calculates balances automatically from transactions.
+                    </p>
+                    <a href="https://my-financetracker.netlify.app/" target="_blank" class="demo-btn">View Demo</a>
+                </div>
+            </div>
+            <button class="arrow right">&#10095;</button>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact">
+            <p>Let's connect:</p>
+            <a href="https://github.com/zann06" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/farid-rizky-fauzan-a77358248/" target="_blank">LinkedIn</a>
+            <a href="mailto:fauzan.faridrizky@gmail.com">Email</a>
+        </div>
+
+
+    </section>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Scroll animation
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        sections.forEach(sec => observer.observe(sec));
+
+        // Portfolio slider
+        const portfolio = document.querySelector('.portfolio');
+        const leftBtn = document.querySelector('.arrow.left');
+        const rightBtn = document.querySelector('.arrow.right');
+
+        rightBtn.addEventListener('click', () => {
+            portfolio.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        });
+        leftBtn.addEventListener('click', () => {
+            portfolio.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
