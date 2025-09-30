@@ -1,4 +1,4 @@
-##Farid Fauzan – Personal Portfolio
+# Farid Fauzan – Personal Portfolio
 
 Welcome to my personal portfolio website!
 This site showcases my journey, skills, and projects as I explore Web3, Cybersecurity, and Frontend Development.
@@ -6,7 +6,7 @@ This site showcases my journey, skills, and projects as I explore Web3, Cybersec
 ---
 
 
-##Features
+## Features
 
 📱 Responsive Design – optimized for both desktop and mobile.
 🎨 Smooth Animations – sections appear with clean transitions.
@@ -25,10 +25,12 @@ Finance Tracker – a mini project to track personal expenses & income (includes
 
 📬 Contact Section – quick links to GitHub, LinkedIn, and email.
 
-##Tech Stack
+## Tech Stack
 
 Frontend: HTML, CSS, JavaScript
 
 Styling: Custom CSS (basic Tailwind knowledge)
 
 Other: JavaScript (animations, interactivity)
+
+---
