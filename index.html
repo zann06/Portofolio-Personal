@@ -5,6 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Farid Rizky Fauzan - Portfolio</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Farid Rizky Fauzan - Personal Portfolio showcasing skills in Web3, Cybersecurity, and Frontend development. Explore projects, experiences, and contact information.">
+    <meta name="keywords"
+        content="Farid Rizky Fauzan, Portfolio, Web3, Cybersecurity, Frontend, Projects, HTML, CSS, JavaScript">
+    <meta name="author" content="Farid Rizky Fauzan">
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Farid Rizky Fauzan - Portfolio">
+    <meta property="og:description"
+        content="Explore my projects and skills in Web3, Cybersecurity, and Frontend development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zann06.github.io/Portofolio-Personal/">
+    <meta property="og:image" content="https://zann06.github.io/Portofolio-Personal/bannerzoe.png">
+
+    <!-- Favicon (opsional) -->
+    <link rel="icon" href="favicon.png" type="image/x-icon" sizes="32x32">
+
+    <!-- CSS Stylesheet -->
     <style>
         /* Reset */
         * {
@@ -198,7 +218,7 @@
         /* Skills */
         .skills {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             max-width: 900px;
             margin: 0 auto;
@@ -258,10 +278,10 @@
 
         .portfolio-card .media {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 16/9;
             display: block;
             overflow: hidden;
-            background: linear-gradient(90deg, rgba(2,6,23,0.4), rgba(3,37,65,0.35));
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.4), rgba(3, 37, 65, 0.35));
         }
 
         .portfolio-card img,
@@ -283,17 +303,6 @@
             color: #ddd;
         }
 
-        /* Contact */
-        .contact a {
-            color: #00e0ff;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        .contact a:hover {
-            color: #fff;
-        }
-
         .demo-btn {
             display: inline-block;
             margin: 10px 0 20px;
@@ -307,6 +316,17 @@
 
         .demo-btn:hover {
             background: #4facfe;
+            color: #fff;
+        }
+
+        /* Contact */
+        .contact a {
+            color: #00e0ff;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
             color: #fff;
         }
 
@@ -328,19 +348,17 @@
                 transform: translateX(0);
             }
 
-            .hamburger {
-                display: flex;
-            }
-
             section {
                 padding: 80px 15px 40px;
             }
 
+            /* Portfolio tetap 1 kolom */
             .portfolio {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
 
+            /* Skills di mobile rapih, 2 kolom */
             .skills {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
@@ -348,6 +366,7 @@
                 margin: 0 auto;
             }
 
+            /* Optional: kembalikan skill-card font/image ukuran lebih kecil */
             .skill-card img {
                 width: 35px;
                 height: 35px;
@@ -359,6 +378,7 @@
         }
     </style>
 </head>
+
 
 <body>
     <nav>
