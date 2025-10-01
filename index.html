@@ -21,7 +21,7 @@
     <meta property="og:url" content="https://zann06.github.io/Portofolio-Personal/">
     <meta property="og:image" content="https://zann06.github.io/Portofolio-Personal/bannerzoe.png">
 
-    <!-- Favicon (opsional) -->
+    <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/x-icon" sizes="32x32">
 
     <!-- CSS Stylesheet -->
@@ -96,6 +96,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1100;
         }
 
         .hamburger span {
@@ -348,6 +349,10 @@
                 transform: translateX(0);
             }
 
+            .hamburger {
+                display: flex; /* tampilkan hamburger di mobile */
+            }
+
             section {
                 padding: 80px 15px 40px;
             }
@@ -378,7 +383,6 @@
         }
     </style>
 </head>
-
 
 <body>
     <nav>
