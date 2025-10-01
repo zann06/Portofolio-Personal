@@ -92,20 +92,26 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* Hamburger adjustments */
         .hamburger {
             display: none;
+            /* tetap hidden di desktop */
             flex-direction: column;
             cursor: pointer;
             z-index: 1100;
+            margin-left: 20px;
+            /* beri jarak dari logo */
         }
 
         .hamburger span {
             height: 3px;
             width: 25px;
             background: white;
-            margin: 4px 0;
+            margin: 5px 0;
+            /* sedikit jarak antar garis */
             transition: 0.4s;
         }
+
 
         /* Sections */
         section {
@@ -350,7 +356,8 @@
             }
 
             .hamburger {
-                display: flex; /* tampilkan hamburger di mobile */
+                display: flex;
+                /* tampilkan hamburger di mobile */
             }
 
             section {
@@ -534,7 +541,8 @@
                 </div>
                 <h3>Personal Portfolio Website</h3>
                 <p>
-                    Basic personal portfolio showcasing my skills, experience, and projects. Built with HTML, CSS, and JavaScript, featuring responsive design and smooth scrolling.
+                    Basic personal portfolio showcasing my skills, experience, and projects. Built with HTML, CSS, and
+                    JavaScript, featuring responsive design and smooth scrolling.
                 </p>
             </div>
             <div class="portfolio-card">
